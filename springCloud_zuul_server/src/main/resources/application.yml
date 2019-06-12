@@ -1,0 +1,22 @@
+###服务注册到eureka地址
+eureka:
+  client: 
+    service-url: 
+      defaultZone: http://127.0.0.1:8100/eureka
+###api网关端口
+server: 
+  port: 8022
+##网关注册名称
+spring: 
+  application: 
+    name: service-zuul
+##网关服务的配置
+zuul: 
+  routes: 
+    api-a: 
+    ##经过网关、调用user：http://localhost:8022/api-user/**
+      path: /api-user/**
+      serviceId: app-hhf-user
+    api-b: 
+      path: /api-vip/**
+      serviceId: app-hhf-vip
