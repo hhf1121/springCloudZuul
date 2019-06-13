@@ -17,6 +17,7 @@ public class ZuulApp {
 		SpringApplication.run(ZuulApp.class, args);
 	}
 	
+	//启动filter器
 	@Bean
 	public TokenFilter TokenFilter() {
 	 return new TokenFilter();

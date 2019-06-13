@@ -6,17 +6,30 @@ eureka:
 ###api网关端口
 server: 
   port: 8022
-##网关注册名称
+##网关注册名称(configClient端：server-zuul)
 spring: 
   application: 
-    name: service-zuul
-##网关服务的配置
-zuul: 
-  routes: 
-    api-a: 
-    ##经过网关、调用user：http://localhost:8022/api-user/**
-      path: /api-user/**
-      serviceId: app-hhf-user
-    api-b: 
-      path: /api-vip/**
-      serviceId: app-hhf-vip
+    name: server-zuul
+  cloud:
+    config:
+    ####读取后缀
+      profile: dev
+      ####读取config-server注册地址
+      discovery:
+        service-id: config-server
+        enabled: true
+##网关服务的配置（放到码云上）
+#zuul: 
+#  routes: 
+#    api-a: 
+#    ##经过网关、调用user：http://localhost:8022/api-user/**
+#      path: /api-user/**
+#      serviceId: app-hhf-user
+#    api-b: 
+#      path: /api-vip/**
+#      serviceId: app-hhf-vip
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
